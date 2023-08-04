@@ -9,22 +9,20 @@ const Todo = () => {
     const [openModal, setOpenModal] = useState(false);
     const [todo, setTodo] = useState([ ]);
 
-    const addTodo = (nameref, phonenumberef, e) => {
-        e.preventDefault()
-     
-        
+    const addTodo = (nameref, phonenumberef, picref) => {
+    
         const newTodo={
             id: Date.now(),
             name: nameref,
-            phonenumber: phonenumberef
+            phonenumber: phonenumberef,
+            image: picref
         }
 
         if(newTodo.name.trim().length && newTodo.phonenumber.trim().length){
             setTodo([...todo, newTodo]);
-            // nameref.current.value = "";
-            // phonenumber.current.value = "";
+            
         }else{
-            alert('addd')
+            alert('Fill name and number field')
         }
 
     }
@@ -46,6 +44,8 @@ const Todo = () => {
                             <button onClick={() => setOpenModal(true)} className="todo-btn px-[50px] py-[10px] duration-300 bg-green-600 hover:bg-green-500 text-white rounded font-semibold">Add Contact</button>
                         </div>
 
+                        <h1 className="text-[30px] font-bold uppercase text-center my-5">My contacts</h1>
+                        <span className="w-full bg-slate-400 h-[2px] block rounded-md"></span>
                         <div className="todo-body pt-8">
                             <ul className="flex flex-col gap-y-4">
 
