@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Modal from "../UI/Modal/Modal";
 import List from "../UI/List/List";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Todo = () => {
 
@@ -18,23 +19,18 @@ const Todo = () => {
             image: picref
         }
 
-        if(newTodo.name.trim().length && newTodo.phonenumber.trim().length){
-            setTodo([...todo, newTodo]);
-            
-        }else{
-            alert('Fill name and number field')
-        }
-
+        setTodo([...todo, newTodo]);
     }
 
     const deleteTask = (id) => {
         const filterdTodo = todo.filter((item) => item.id != id);
         setTodo(filterdTodo);
-    
+        toast.info("Deleted successfully!", {autoClose: 2000})
     };
 
     return (
         <div>
+            <ToastContainer/>
            {openModal && <Modal addTodo={addTodo} setOpenModal={setOpenModal} />}
 
             <section className="pt-10">

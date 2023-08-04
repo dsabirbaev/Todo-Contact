@@ -1,6 +1,7 @@
 
 import { useRef } from "react";
 import "./style.scss";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Modal = ({setOpenModal, addTodo}) => {
     const userNameRef = useRef("")
@@ -9,8 +10,16 @@ const Modal = ({setOpenModal, addTodo}) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        addTodo(userNameRef.current.value, phoneNumberRef.current.value, imgRef.current.value)
-        setOpenModal(false);
+        
+        if(userNameRef.current.value.trim().length && phoneNumberRef.current.value.trim().length){
+            addTodo(userNameRef.current.value, phoneNumberRef.current.value, imgRef.current.value)
+            toast.success("Added successfully!", {autoClose: 2000})
+            setOpenModal(false);
+        }else{
+            toast.error("Fill name and number!", {autoClose: 2000})
+        }
+  
+       
     };
 
 
